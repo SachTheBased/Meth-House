@@ -20,8 +20,21 @@ function Smoke () {
 
     xhr.onreadystatechange = function() {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            console.log("e")
+            console.log(xhr.response)
         }
-    }
+    };
+    xhr.send(null);
+
+    Get_Drugs();
+}
+
+function Get_Drugs () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("HOWMANYNIGGASSMOKIN", '/api/v1/smoke', true);
+
+    xhr.onload = function () {
+        response = JSON.parse(xhr.response)
+        document.getElementById("global_meth_smoked").innerHTML = response['Meth'];
+    };
     xhr.send(null);
 }
