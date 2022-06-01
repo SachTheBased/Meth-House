@@ -8,10 +8,13 @@
   </head>
 
   <body onload="Onload()">
-    <h1>Meth House</h1>
-    <span id="meth_smoked"></span>kg<br>
-    <button onclick = "Smoke()">Smoke</button>
+    <h1>Drug House</h1>
+    Meth: <span id="meth_smoked"></span>kg<br>
+    Cocaine: <span id="coke_smoked"></span>kg<br>
+    <button onclick = "Smoke('meth')">Smoke Meth</button><br>
+    <button onclick = "Smoke('cocaine')">Smoke Cocaine</button>
     <h2>Global Stats</h2>
-    <span id="global_meth_smoked"></span>
+    Meth smoked: <span id="global_meth_smoked"></span><br>
+    Cocaine smoked: <span id="global_coke_smoked"></span>
   </body>
 </html>
