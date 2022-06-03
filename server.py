@@ -11,8 +11,8 @@ async def echo(websocket, path):
     clients.add(websocket)
     try:
         async for message in websocket:
+            message = json.loads(message)
             if message['secret_key'] == secret_key:
-                message = json.loads(message)
                 if message['type'] == 'grow':
                     msg = json.dumps({'type': 'grow', 'drug': message['drug']})
                 elif message['type'] == 'smoke':
