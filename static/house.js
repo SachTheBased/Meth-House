@@ -26,13 +26,18 @@ function Smoke (drug) {
 
     xhr.onreadystatechange = function() {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            console.log(xhr.response)
             if (drug == "cocaine") {
                 localStorage.setItem("Coke", parseInt(localStorage.getItem("Coke"))+1);
             } else if (drug == "meth") {
                 localStorage.setItem("Meth", parseInt(localStorage.getItem("Meth"))+1);
-            }
-        };
+            };
+        } else if (this.readyState === XMLHttpRequest.DONE && this.status === 418) {
+            if (drug == "cocaine") {
+                document.getElementById("cocaine_error").innerHTML = `Sorry bro we out of ${drug}<br>`
+            } else if (drug == "meth") {
+                document.getElementById("meth_error").innerHTML = `Sorry bro we out of ${drug}<br>`
+            };
+        }
     };
     xhr.send(null);
     Get_Drugs();
@@ -44,8 +49,8 @@ function Get_Drugs () {
 
     xhr.onload = function () {
         response = JSON.parse(xhr.response)
-        document.getElementById("global_meth_smoked").innerHTML = response['meth'];
-        document.getElementById("global_coke_smoked").innerHTML = response['cocaine'];
+        document.getElementById("global_meth_smoked").innerHTML = response['smoked']['meth'];
+        document.getElementById("global_coke_smoked").innerHTML = response['smoked']['cocaine'];
         document.getElementById("meth_smoked").innerHTML = localStorage.getItem("Meth");
         document.getElementById("coke_smoked").innerHTML = localStorage.getItem("Coke");
     };

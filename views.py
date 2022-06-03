@@ -10,3 +10,7 @@ def index():
 @views.route('/house')
 def meth():
     return flask.render_template('house.html')
+
+@views.route('/farm')
+def farm():
+    return flask.render_template('farm.html')
